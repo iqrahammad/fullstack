@@ -18,9 +18,21 @@ await User.insertOne({
 response.status(200).send({popup : "User Added Successfully"});
     
 } catch (error) {
-    
+    console.log(error);
+    response.status(404).send({popup:"error in  inserting user "});
 }
 })
+app.get('/getusers',async(request,response)=>{
+    try {
+        const users = await User.find({});
+        response.status(200).send(users);
+    
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
 
 app.listen(3000, () => {
     console.log("Server Started");
